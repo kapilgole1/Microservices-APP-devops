@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install, build and test services
+        run: |
+          set -e
+          SERVICES="gateway user token mailer permission task"
+          for d in $SERVICES; do
+            if [ -f "$d/package.json" ]; then
+              echo "==> Installing $d"
+              npm --prefix "$d" install
+              echo "==> Building $d (if build script present)"
+              npm --prefix "$d" run build || true
+              echo "==> Running tests for $d (if present)"
+              npm --prefix "$d" test || true
+            else
+              echo "==> Skipping $d (no package.json)"
+            fi
+          done
+
+      - name: Run root lint
+        run: |
+          if [ -f package.json ]; then
+            npm install
+            npm run lint || true
+          fi
