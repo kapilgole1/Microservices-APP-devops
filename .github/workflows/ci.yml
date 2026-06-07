@@ -1,47 +1,85 @@
-name: CI
+name: CI-Pipeline
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [14.8.0]
 
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: npm
 
-      - name: Install, build and test services
+      - name: Install, Build and Test Services
+        shell: bash
         run: |
           set -e
+
           SERVICES="gateway user token mailer permission task"
+
           for d in $SERVICES; do
-            if [ -f "$d/package.json" ]; then
-              echo "==> Installing $d"
-              npm --prefix "$d" install
-              echo "==> Building $d (if build script present)"
-              npm --prefix "$d" run build || true
-              echo "==> Running tests for $d (if present)"
-              npm --prefix "$d" test || true
+            if [ ! -f "$d/package.json" ]; then
+              echo "Skipping $d (package.json not found)"
+              continue
+            fi
+
+            echo "==================================="
+            echo "Processing Service: $d"
+            echo "==================================="
+
+            npm --prefix "$d" ci
+
+            if npm --prefix "$d" run | grep -q "build"; then
+              echo "Building $d"
+              npm --prefix "$d" run build
             else
-              echo "==> Skipping $d (no package.json)"
+              echo "No build script found for $d"
+            fi
+
+            if npm --prefix "$d" run | grep -q "test"; then
+              echo "Testing $d"
+              npm --prefix "$d" test
+            else
+              echo "No test script found for $d"
             fi
           done
 
-      - name: Run root lint
+      - name: Run Root Lint
         run: |
           if [ -f package.json ]; then
-            npm install
-            npm run lint || true
+            npm ci
+            if npm run | grep -q "lint"; then
+              npm run lint
+            else
+              echo "No lint script found"
+            fi
           fi
+
+  trivy-scan:
+    name: Trivy Security Scan
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy Filesystem Scan
+        uses: aquasecurity/trivy-action@v0.28.0
+        with:
+          scan-type: fs
+          scan-target: '.'
+          severity: CRITICAL,HIGH
+          exit-code: '1'
