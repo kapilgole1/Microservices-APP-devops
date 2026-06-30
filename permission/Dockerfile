@@ -1,4 +1,4 @@
-FROM node:14.8.0-alpine
+FROM node:18-alpine
 RUN npm install -g npm@6.14.7
 RUN mkdir -p /var/www/permission
 WORKDIR /var/www/permission
