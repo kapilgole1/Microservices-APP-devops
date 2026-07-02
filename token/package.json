@@ -12,6 +12,7 @@
     "lint": "eslint \"src/**/*.ts\" --fix"
   },
   "dependencies": {
+    "@nestjs/config": "2.3.4",
     "@nestjs/common": "8.0.0",
     "@nestjs/core": "8.0.0",
     "@nestjs/microservices": "8.0.0",

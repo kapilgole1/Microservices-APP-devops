@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  MONGO_DATABASE: "testdb"
+
+  API_GATEWAY_PORT: "8000"
+
+  TASK_SERVICE_PORT: "8001"
+  TASK_SERVICE_HOST: "task"
+
+  TOKEN_SERVICE_PORT: "8002"
+  TOKEN_SERVICE_HOST: "token"
+
+  USER_SERVICE_PORT: "8003"
+  USER_SERVICE_HOST: "user"
+
+  MAILER_SERVICE_PORT: "8004"
+  MAILER_SERVICE_HOST: "mailer"
+
+  PERMISSION_SERVICE_PORT: "8005"
+  PERMISSION_SERVICE_HOST: "permission"
+
+  BASE_URI: "http://localhost"
+
+  MAILER_DISABLED: "0"

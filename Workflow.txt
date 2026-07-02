@@ -1,0 +1,16 @@
+k8s/
+├── namespace.yaml
+├── configmap.yaml
+├── secret.yaml
+├── mongodb-deployment.yaml
+├── mongodb-service.yaml
+├── api-gateway-deployment.yaml
+├── api-gateway-service.yaml
+├── user-service-deployment.yaml
+├── token-service-deployment.yaml
+├── task-service-deployment.yaml
+├── permission-service-deployment.yaml
+└── mailer-service-deployment.yaml
+
+username: Microservice-APP-Smtp-k8s
+Smtp Pass: tfjm pbex agye jjbt 
