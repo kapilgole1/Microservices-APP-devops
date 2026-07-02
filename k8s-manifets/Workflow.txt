@@ -1,0 +1,121 @@
+k8s/
+├── namespace.yaml
+├── configmap.yaml
+├── secret.yaml
+├── mongodb-deployment.yaml
+├── mongodb-service.yaml
+├── api-gateway-deployment.yaml
+├── api-gateway-service.yaml
+├── user-service-deployment.yaml
+├── token-service-deployment.yaml
+├── task-service-deployment.yaml
+├── permission-service-deployment.yaml
+└── mailer-service-deployment.yaml
+
+username: Microservice-APP-Smtp-k8s
+Smtp Pass: tfjm pbex agye jjbt 
+
+
+
+
+
+<!-- Banner (Can swap image with your own or a more modern one from shields.io or elsewhere) -->
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=3500&pause=1000&color=8827E6&center=true&vCenter=true&width=650&lines=DevOps+%7C+Cloud+%7C+Automation+%F0%9F%9B%A0%EF%B8%8F;AWS+%7C+Jenkins+%7C+Kubernetes+%F0%9F%A4%96+with+a+Growth+Mindset;Building+Production-ready+%E2%9C%A8+Systems+with+Passion!" alt="DevOps Profile Banner"/>
+</p>
+
+# 👋 Hi, I'm <span style="color:#8e44ad;">Kapil Gole</span> – <span style="color:#5865F2;">DevOps & Cloud Enthusiast</span>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/DevOps-Engineer-6C63FF?style=for-the-badge&logo=linux&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS-Cloud-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Jenkins-Expert-D24939?style=for-the-badge&logo=jenkins&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Kubernetes-Enthusiast-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white"/>
+</p>
+
+---
+
+## 👨‍💻 About Me
+
+Driven Computer Science & Engineering student and aspiring <strong>DevOps Engineer</strong> passionate about:
+- 🌩️ Cloud Engineering
+- 🤖 Infrastructure Automation
+- 🛡️ DevSecOps
+- ⚙️ Building scalable, reliable production systems
+
+I thrive on hands-on projects, learning-by-doing, and always aim to deepen my technical expertise.
+
+---
+
+## 🛠️ Technical Skills
+
+## 🚀 Cloud & Infrastructure
+- **AWS** (EC2, S3, IAM, VPC, Lambda, CloudFormation — intermediate+)
+- **Terraform** (multi-cloud provisioning, modules — intermediate)
+
+## 🧰 DevOps & Tools
+- **Docker, Docker Compose** (containerization, orchestration)
+- **Kubernetes** (Minikube, kind, EC2-hosted clusters, Helm — intermediate)
+- **Golang** (automation scripting — basic to intermediate)
+- **Linux** (administration, shell scripting — intermediate)
+
+## ⛓️ CI/CD & Automation
+- **Jenkins, GitHub Actions** (pipeline creation, advanced workflows)
+- **ArgoCD** (GitOps, advanced deployment strategies)
+- **NGINX** (reverse proxy, load balancing)
+
+## 📈 Monitoring
+- **Prometheus, Grafana** (metrics, dashboards, alerting)
+
+## 🔐 Security & Others
+- **DevSecOps practices** (integrated security in CI/CD, SAST/DAST tools)
+---
+
+## 🚀 Recent Projects
+
+- **Secure & Observable CI/CD Pipeline:** Jenkins, Trivy, Prometheus, Grafana
+- **Full-Stack Dockerized Deployments** with automated pipelines
+- **Kubernetes Monitoring Stack** setup
+- **NGINX Reverse Proxy** production configuration
+- **GitHub Actions Automation Workflows**
+- **Scalable Flask App on Kubernetes**
+
+---
+
+## 🌱 Currently Learning
+
+- Advanced cloud-native stacks & patterns
+- Security-first DevOps/DevSecOps
+- Enterprise CI/CD best practices
+- Open-source infra & GitOps
+
+---
+
+## ⚡ Fun Facts
+
+- 🏋️‍♂️ Fitness enthusiast
+- 🛡️ Fascinated by defense tech
+- 🥘 Restaurant explorer
+- 🎵 Music fan & friend-focused
+- 📚 Lifelong learner; curiosity-driven
+
+---
+
+## 🔗 Connect with Me
+
+<p align="center">
+  <a href="https://in.linkedin.com/in/kapil-gole" target="_blank">
+    <img src="https://img.shields.io/badge/-Kapil_Gole-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+  <!-- Add more social links here -->
+</p>
+
+---
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=kapilgole1&show_icons=true&count_private=true&hide_rank=true&theme=radical" alt="Kapil's GitHub stats" />
+  <br>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=kapilgole1&theme=radical" alt="Kapil's GitHub Streak" />
+  <br>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=kapilgole1&layout=compact&theme=radical" alt="Top languages"/>
+</p>
