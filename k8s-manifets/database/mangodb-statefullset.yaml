@@ -27,6 +27,15 @@ spec:                                   # 1. STATEFULSET SPEC (Defines controlle
       containers:
       - name: Database-Mongodb 
         image: mongo:7.0.1
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+            empheral-storage: "1Gi"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+            empheral-storage: "1Gi"
         
         ports:
         - containerPort: 27017
