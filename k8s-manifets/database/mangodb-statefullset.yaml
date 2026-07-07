@@ -76,6 +76,13 @@ spec:                                   # 1. STATEFULSET SPEC (Defines controlle
         - secretRef:
             name: app-secret
 
+        env:
+        - name: MONGO_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: MONGO_DATABASE
+
       #volumes:
       #- name: mypvc-for-mongodb
       #  persistentVolumeClaim:        
