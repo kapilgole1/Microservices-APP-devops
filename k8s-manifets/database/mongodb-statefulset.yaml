@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 
 metadata:
-  name: mystatefulset-MongoDB
+  name: mystatefulset-mongodb
   namespace: web-app-k8s
 
 spec:                                   # 1. STATEFULSET SPEC (Defines controllers/replicas)
@@ -26,7 +26,7 @@ spec:                                   # 1. STATEFULSET SPEC (Defines controlle
         role: database
       
       containers:
-      - name: Database-Mongodb 
+      - name: database-mongodb 
         image: mongo:7.0.1
         #imagePullPolicy: IfNotPresent        # use only if the image is not present on the node, otherwise use the local image.
 
@@ -75,13 +75,13 @@ spec:                                   # 1. STATEFULSET SPEC (Defines controlle
   
         envFrom:
         - secretRef:
-            name: app-secret
+            name: mongo-secret
 
         env:
         - name: MONGO_DATABASE
           valueFrom:
             configMapKeyRef:
-              name: app-config
+              name: mongodb-config
               key: MONGO_DATABASE
 
       #volumes:
