@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: mystatefulset-MongoDB
+
+spec:                                   # 1. STATEFULSET SPEC (Defines controllers/replicas)
+  
+  selector:
+    matchLabels:
+      app: Database-Mongodb-label       #A StatefulSet uses a selector to know which Pods belong to it.
+  
+  serviceName: mongo-service            #It must match the name of the headless service that you created for the StatefulSet.
+  
+  replicas: 1
+  
+  template:                             # 2. POD TEMPLATE
+    metadata:
+      labels:
+        app: Database-Mongodb-label     #It is important to note that the labels of the Pod template must match the selector of the StatefulSet.
+  
+    spec: 
+      nodeSelector:                     # 3. POD SPEC (Containers, ports, and mounts)
+        kubernetes.io/hostname: Clustername
+        role: database
+      
+      containers:
+      - name: Database-Mongodb 
+        image: mongo:7.0.1
+        
+        ports:
+        - containerPort: 27017
+          name: mongodb
+        
+        volumeMounts:
+        - name: mypvc-inside-statefulset
+          mountPath: /data/db
+  
+        envFrom:
+        - secretRef:
+            name: app-secret
+
+      #volumes:
+      #- name: mypvc-for-mongodb
+      #  persistentVolumeClaim:        
+          #claimName: mypvc-for-mongodb #It must match the name of the PersistentVolumeClaim that you created for the StatefulSet.
+  
+  volumeClaimTemplates:
+  - metadata:
+      name: mypvc-inside-statefulset
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
