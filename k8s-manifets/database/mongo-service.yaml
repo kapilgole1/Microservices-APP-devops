@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongo-service
+  namespace: web-app-k8s
 spec:
   clusterIP: None
   #type: ClusterIP

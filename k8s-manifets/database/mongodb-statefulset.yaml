@@ -3,6 +3,7 @@ kind: StatefulSet
 
 metadata:
   name: mystatefulset-MongoDB
+  namespace: web-app-k8s
 
 spec:                                   # 1. STATEFULSET SPEC (Defines controllers/replicas)
   
