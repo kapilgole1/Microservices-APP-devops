@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: permission-deployment
+  namespace: web-app-k8s
+  labels:
+    app: permission
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: permission
+  template:
+    metadata:
+      labels:
+        app: permission
+    spec:
+      containers:
+        - name: permission
+          image: kapilgole1/permission:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8005
+          env:
+            - name: PERMISSION_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: PERMISSION_SERVICE_PORT

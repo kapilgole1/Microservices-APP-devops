@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-deployment
+  namespace: web-app-k8s
+  labels:
+    app: user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      containers:
+        - name: user
+          image: kapilgole1/user:latest
+          #imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8003
+          env:
+            - name: USER_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: USER_SERVICE_PORT
+            - name: BASE_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: BASE_URI
+            - name: API_GATEWAY_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: API_GATEWAY_PORT
+            - name: MAILER_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MAILER_SERVICE_PORT
+            - name: MAILER_SERVICE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MAILER_SERVICE_HOST
+            - name: MONGO_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_DSN

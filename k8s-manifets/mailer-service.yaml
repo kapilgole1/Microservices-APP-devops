@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mailer
+  namespace: web-app-k8s
+  labels:
+    app: mailer
+spec:
+  selector:
+    app: mailer
+  ports:
+    - protocol: TCP
+      port: 8004
+      targetPort: 8004
+  type: ClusterIP

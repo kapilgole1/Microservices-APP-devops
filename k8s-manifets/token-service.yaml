@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: token
+  namespace: web-app-k8s
+  labels:
+    app: token
+spec:
+  selector:
+    app: token
+  ports:
+    - protocol: TCP
+      port: 8002
+      targetPort: 8002
+  type: ClusterIP

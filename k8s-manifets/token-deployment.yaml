@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: token-deployment
+  namespace: web-app-k8s
+  labels:
+    app: token
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: token
+  template:
+    metadata:
+      labels:
+        app: token
+    spec:
+      containers:
+        - name: token
+          image: kapilgole1/token:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8002
+          env:
+            - name: TOKEN_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: TOKEN_SERVICE_PORT
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: JWT_SECRET
+            - name: MONGO_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_DSN

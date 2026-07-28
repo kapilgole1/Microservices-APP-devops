@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailer-deployment
+  namespace: web-app-k8s
+  labels:
+    app: mailer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mailer
+  template:
+    metadata:
+      labels:
+        app: mailer
+    spec:
+      containers:
+        - name: mailer
+          image: kapilgole1/mailer:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8004
+          env:
+            - name: MAILER_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MAILER_SERVICE_PORT
+            - name: MAILER_DISABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MAILER_DISABLED
+            - name: MAILER_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: MAILER_DSN
+            - name: MAILER_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: MAILER_FROM
