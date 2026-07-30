@@ -3,8 +3,28 @@ name: Node.js Microservices CI
 on:
   push:
     branches: ["master"]
+
+    paths-ignore:
+      - 'README.md'
+      - '.github/workflows/ci.yml'
+      - 'LICENSE'
+      - 'docs/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'k8s-**/**'
+
+
   pull_request:
     branches: ["master"]
+
+    paths-ignore:
+      - 'README.md'
+      - '.github/workflows/ci.yml'
+      - 'LICENSE'
+      - 'docs/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'k8s-**/**'
 
 env:
   NODE_VERSION: 18
@@ -68,3 +88,44 @@ jobs:
           tags: |
             ${{ env.DOCKERHUB_ORG }}/${{ matrix.service }}:latest
             ${{ env.DOCKERHUB_ORG }}/${{ matrix.service }}:${{ github.sha }}
+
+
+  # =========================================================================
+  # FINAL CD JOB (APPENDED)
+  # =========================================================================
+  update-gitops-manifests:
+    needs: build-and-push-images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Uses the built-in GitHub secret token to authorize pushing code back
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Kustomize
+        run: |
+          curl -s "https://githubusercontent.com" | bash
+          sudo mv kustomize /usr/local/bin/
+
+      - name: Update All Microservice Image Tags
+        run: |
+          # Step inside your local manifest folder
+          cd k8s-manifets
+          
+          # This loop updates the kustomization.yaml template with the exact commit SHA code
+          for svc in gateway mailer permission task token user; do
+            kustomize edit set image ${{ env.DOCKERHUB_ORG }}/$svc=${{ env.DOCKERHUB_ORG }}/$svc:${{ github.sha }}
+          done
+
+      - name: Commit and Push Manifest Changes
+        run: |
+          git config --global user.name "Kapil Gole"
+          git config --global user.email "kapilprajapat0011@gmail.com"
+          
+          # Only stage and track your Kubernetes configuration folder
+          git add k8s-manifets/
+          
+          # [skip ci] acts as a second firewall protection against workflow loops
+          git commit -m "chore(deploy): bump images tag to ${{ github.sha }} [skip ci]" || exit 0
+          git push origin master
