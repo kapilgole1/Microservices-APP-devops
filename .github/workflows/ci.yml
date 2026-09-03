@@ -1,5 +1,8 @@
 name: Node.js Microservices CI
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: ["master"]
@@ -100,8 +103,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Uses the built-in GitHub secret token to authorize pushing code back
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ github.token }}
 
       - name: Install Kustomize
         run: |
