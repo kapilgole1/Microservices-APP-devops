@@ -25,19 +25,19 @@ resources:
 images:
 - name: kapilgole1/gateway
   newName: kapilgole1/gateway
-  newTag: bfa40c7f389cd7fdf954d9f400e4a54a0326805b
+  newTag: 6595ed21474ba69e0b3aaf5beec9bce74c84aaa7
 - name: kapilgole1/mailer
   newName: kapilgole1/mailer
-  newTag: bfa40c7f389cd7fdf954d9f400e4a54a0326805b
+  newTag: 6595ed21474ba69e0b3aaf5beec9bce74c84aaa7
 - name: kapilgole1/permission
   newName: kapilgole1/permission
-  newTag: bfa40c7f389cd7fdf954d9f400e4a54a0326805b
+  newTag: 6595ed21474ba69e0b3aaf5beec9bce74c84aaa7
 - name: kapilgole1/task
   newName: kapilgole1/task
-  newTag: bfa40c7f389cd7fdf954d9f400e4a54a0326805b
+  newTag: 6595ed21474ba69e0b3aaf5beec9bce74c84aaa7
 - name: kapilgole1/token
   newName: kapilgole1/token
-  newTag: bfa40c7f389cd7fdf954d9f400e4a54a0326805b
+  newTag: 6595ed21474ba69e0b3aaf5beec9bce74c84aaa7
 - name: kapilgole1/user
   newName: kapilgole1/user
-  newTag: bfa40c7f389cd7fdf954d9f400e4a54a0326805b
+  newTag: 6595ed21474ba69e0b3aaf5beec9bce74c84aaa7
