@@ -1,0 +1,18 @@
+chmod +x Script-create-cluster.sh
+
+./Script-create-cluster.sh
+
+kubectl cluster-info
+
+kubectl apply -k .
+
+kubectl get nodes -o wide
+
+kubectl get pods -n web-app-k8s -o wide
+
+kubectl get svc -n web-app-k8s
+
+kubectl get statefulsets,deployments -n web-app-k8s
+
+minikube delete -p microservice-app
+
