@@ -1,0 +1,14 @@
+kubectl apply -f namespace.yaml
+
+kubectl apply -f config.yaml -f secret.yaml -f database/mongo-config.yaml -f database/mongo-secret.yaml
+
+kubectl apply -f database/mongodb-statefulset.yaml -f database/mongo-service.yaml
+
+kubectl apply -f mailer-deployment.yaml -f mailer-service.yaml -f permission-deployment.yaml -f permission-service.yaml -f task-deployment.yaml -f task-service.yaml -f token-deployment.yaml -f token-service.yaml -f user-deployment.yaml -f user-service.yaml
+
+
+kubectl apply -f api-gateway-deployment.yaml -f api-gateway-service.yaml
+
+kubectl describe pod -n web-app-k8s <pods-name>
+
+kustomize command: kubectl apply -k .

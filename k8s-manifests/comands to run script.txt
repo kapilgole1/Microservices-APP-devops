@@ -2,6 +2,10 @@ chmod +x Script-create-cluster.sh
 
 ./Script-create-cluster.sh
 
+kubectl config get-contexts
+
+kubectl config use-context microservice-app
+
 kubectl cluster-info
 
 kubectl apply -k .
