@@ -5,11 +5,11 @@ permissions:
 
 on:
   push:
-    branches: ["master","main"]
+    branches: main
 
     paths-ignore:
       - 'README.md'
-      - '.github/workflows/ci.yml'
+      # - '.github/workflows/ci.yml'
       - 'LICENSE'
       - 'docs/**'
       - 'scripts/**'
