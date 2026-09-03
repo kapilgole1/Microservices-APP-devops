@@ -11,12 +11,10 @@ on:
 
     paths-ignore:
       - 'README.md'
-      - '.github/workflows/ci.yml'
       - 'LICENSE'
       - 'docs/**'
       - 'scripts/**'
       - 'tests/**'
-      - 'k8s-**/**'
 
 
   pull_request:
@@ -24,12 +22,10 @@ on:
 
     paths-ignore:
       - 'README.md'
-      - '.github/workflows/ci.yml'
       - 'LICENSE'
       - 'docs/**'
       - 'scripts/**'
       - 'tests/**'
-      - 'k8s-**/**'
 
 env:
   NODE_VERSION: 18
@@ -66,7 +62,7 @@ jobs:
 
   build-and-push-images:
     needs: build-and-test
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     strategy:
