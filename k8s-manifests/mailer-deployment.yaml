@@ -19,6 +19,7 @@ spec:
         - name: mailer
           image: kapilgole1/mailer:latest
           imagePullPolicy: IfNotPresent
+          # imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8004
           env:

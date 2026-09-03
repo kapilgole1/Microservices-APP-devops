@@ -4,4 +4,5 @@ RUN mkdir -p /var/www/token
 WORKDIR /var/www/token
 ADD . /var/www/token
 RUN npm install
-CMD npm run build && npm run start:prod
+RUN npm run build
+CMD ["npm", "run", "start:prod"]

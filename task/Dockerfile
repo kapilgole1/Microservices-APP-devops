@@ -4,4 +4,5 @@ RUN mkdir -p /var/www/task
 WORKDIR /var/www/task
 ADD . /var/www/task
 RUN npm install
-CMD npm run build && npm run start:prod
+RUN npm run build
+CMD ["npm", "run", "start:prod"]

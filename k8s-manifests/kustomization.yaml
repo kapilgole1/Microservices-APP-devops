@@ -23,15 +23,15 @@ resources:
   - database/mongodb-statefulset.yaml
 
 images:
-  - name: <DOCKERHUB_ORG>/gateway
+  - name: kapilgole1/gateway
     newTag: latest
-  - name: <DOCKERHUB_ORG>/mailer
+  - name: kapilgole1/mailer
     newTag: latest
-  - name: <DOCKERHUB_ORG>/permission
+  - name: kapilgole1/permission
     newTag: latest
-  - name: <DOCKERHUB_ORG>/task
+  - name: kapilgole1/task
     newTag: latest
-  - name: <DOCKERHUB_ORG>/token
+  - name: kapilgole1/token
     newTag: latest
-  - name: <DOCKERHUB_ORG>/user
+  - name: kapilgole1/user
     newTag: latest

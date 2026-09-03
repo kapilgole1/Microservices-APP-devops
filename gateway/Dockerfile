@@ -4,4 +4,5 @@ RUN mkdir -p /var/www/gateway
 WORKDIR /var/www/gateway
 ADD . /var/www/gateway
 RUN npm install
-CMD npm run build && npm run start:prod
+RUN npm run build
+CMD ["npm", "run", "start:prod"]

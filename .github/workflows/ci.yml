@@ -105,13 +105,13 @@ jobs:
 
       - name: Install Kustomize
         run: |
-          curl -s "https://githubusercontent.com" | bash
+          curl -sSL "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
           sudo mv kustomize /usr/local/bin/
 
       - name: Update All Microservice Image Tags
         run: |
           # Step inside your local manifest folder
-          cd k8s-manifets
+          cd k8s-manifests
           
           # This loop updates the kustomization.yaml template with the exact commit SHA code
           for svc in gateway mailer permission task token user; do
@@ -124,7 +124,7 @@ jobs:
           git config --global user.email "kapilprajapat0011@gmail.com"
           
           # Only stage and track your Kubernetes configuration folder
-          git add k8s-manifets/
+          git add k8s-manifests/
           
           # [skip ci] acts as a second firewall protection against workflow loops
           git commit -m "chore(deploy): bump images tag to ${{ github.sha }} [skip ci]" || exit 0

@@ -4,4 +4,5 @@ RUN mkdir -p /var/www/mailer
 WORKDIR /var/www/mailer
 ADD . /var/www/mailer
 RUN npm install
-CMD npm run build && npm run start:prod
+RUN npm run build
+CMD ["npm", "run", "start:prod"]

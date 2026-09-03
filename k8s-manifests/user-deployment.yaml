@@ -18,6 +18,7 @@ spec:
       containers:
         - name: user
           image: kapilgole1/user:latest
+          imagePullPolicy: IfNotPresent
           #imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8003

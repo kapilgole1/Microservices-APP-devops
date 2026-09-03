@@ -19,6 +19,7 @@ spec:
         - name: permission
           image: kapilgole1/permission:latest
           imagePullPolicy: IfNotPresent
+          # imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8005
           env:
