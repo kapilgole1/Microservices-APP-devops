@@ -2,36 +2,42 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - api-gateway-deployment.yaml
-  - api-gateway-service.yaml
-  - mailer-deployment.yaml
-  - mailer-service.yaml
-  - permission-deployment.yaml
-  - permission-service.yaml
-  - task-deployment.yaml
-  - task-service.yaml
-  - token-deployment.yaml
-  - token-service.yaml
-  - user-deployment.yaml
-  - user-service.yaml
-  - config.yaml
-  - namespace.yaml
-  - secret.yaml
-  - database/mongo-config.yaml
-  - database/mongo-secret.yaml
-  - database/mongo-service.yaml
-  - database/mongodb-statefulset.yaml
+- api-gateway-deployment.yaml
+- api-gateway-service.yaml
+- mailer-deployment.yaml
+- mailer-service.yaml
+- permission-deployment.yaml
+- permission-service.yaml
+- task-deployment.yaml
+- task-service.yaml
+- token-deployment.yaml
+- token-service.yaml
+- user-deployment.yaml
+- user-service.yaml
+- config.yaml
+- namespace.yaml
+- secret.yaml
+- database/mongo-config.yaml
+- database/mongo-secret.yaml
+- database/mongo-service.yaml
+- database/mongodb-statefulset.yaml
 
 images:
-  - name: kapilgole1/gateway
-    newTag: latest
-  - name: kapilgole1/mailer
-    newTag: latest
-  - name: kapilgole1/permission
-    newTag: latest
-  - name: kapilgole1/task
-    newTag: latest
-  - name: kapilgole1/token
-    newTag: latest
-  - name: kapilgole1/user
-    newTag: latest
+- name: kapilgole1/gateway
+  newName: kapilgole1/gateway
+  newTag: 03ab7b9525bd41538874fb9cd13b7d681d6f0129
+- name: kapilgole1/mailer
+  newName: kapilgole1/mailer
+  newTag: 03ab7b9525bd41538874fb9cd13b7d681d6f0129
+- name: kapilgole1/permission
+  newName: kapilgole1/permission
+  newTag: 03ab7b9525bd41538874fb9cd13b7d681d6f0129
+- name: kapilgole1/task
+  newName: kapilgole1/task
+  newTag: 03ab7b9525bd41538874fb9cd13b7d681d6f0129
+- name: kapilgole1/token
+  newName: kapilgole1/token
+  newTag: 03ab7b9525bd41538874fb9cd13b7d681d6f0129
+- name: kapilgole1/user
+  newName: kapilgole1/user
+  newTag: 03ab7b9525bd41538874fb9cd13b7d681d6f0129
